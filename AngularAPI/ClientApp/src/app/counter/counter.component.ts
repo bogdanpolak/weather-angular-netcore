@@ -1,13 +1,34 @@
 import { Component } from '@angular/core';
 
+const counterHtml =
+`<h1>Two way counter</h1>
+<p aria-live="polite">Current count: <strong>{{ currentCount }}</strong></p>
+<div class="d-flex flex-wrap">
+  <button class="btn btn-primary" (click)="incrementCounter()">Increment</button>
+  <section class="increment">
+    <span>Increment by:</span>
+    <input type="text" [(ngModel)]="increment" />
+    <button class="btn btn-secondary btn-sm">-</button>
+    <button class="btn btn-secondary btn-sm">+</button>
+  </section>
+</div>`;
+const counterCss =
+`.increment span {margin: 0 5px 0 10px; font-style: italic;}
+.increment input {width: 50px; text-align: center;}
+.increment button {position: relative; margin: 0 1px; width: 30px; font-weight: bold; top: -3px;}`
+
+
 @Component({
   selector: 'app-counter-component',
-  templateUrl: './counter.component.html'
+  templateUrl: counterHtml,
+  styles: [counterCss]
 })
 export class CounterComponent {
   public currentCount = 0;
+  public increment = 1;
 
   public incrementCounter() {
-    this.currentCount++;
+    const inc = +this.increment;
+    this.currentCount += isNaN(inc) ? 0 : inc;
   }
 }
