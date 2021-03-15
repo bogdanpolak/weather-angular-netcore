@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 const counterHtml =
 `<h1>Two way counter</h1>
@@ -7,9 +7,9 @@ const counterHtml =
   <button class="btn btn-primary" (click)="incrementCounter()">Increment</button>
   <section class="increment">
     <span>Increment by:</span>
-    <input type="text" [(ngModel)]="increment" />
-    <button class="btn btn-secondary btn-sm">-</button>
-    <button class="btn btn-secondary btn-sm">+</button>
+    <input type="text"  [(ngModel)]="increment" />
+    <button class="btn btn-secondary btn-sm" (click)="changeIncrement(-1)">-</button>
+    <button class="btn btn-secondary btn-sm" (click)="changeIncrement(+1)">+</button>
   </section>
 </div>`;
 const counterCss =
@@ -23,12 +23,20 @@ const counterCss =
   templateUrl: counterHtml,
   styles: [counterCss]
 })
-export class CounterComponent {
+export class CounterComponent implements OnInit {
   public currentCount = 0;
   public increment = 1;
 
   public incrementCounter() {
     const inc = +this.increment;
     this.currentCount += isNaN(inc) ? 0 : inc;
+  }
+
+  changeIncrement(change: number) {
+    this.increment += change;
+  }
+
+  ngOnInit(): void {
+    console.info("counter on init");
   }
 }
