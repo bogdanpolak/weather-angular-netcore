@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 })
 export class CounterComponent {
   public currentCount = 0;
-  increment = 9;
+  increment = 1;
 
   public incrementCounter() {
     const inc = +this.increment;
