@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: "incrementor",
+  selector: 'app-incrementor',
   styles: [
-    ".increment span {margin: 0 5px 0 10px; font-style: italic;}",
-    ".increment input {width: 4em; text-align: center;}",
-    ".increment button {position: relative; margin: 0 1px; width: 2em; font-weight: bold; top: -3px;}"
+    '.increment span {margin: 0 5px 0 10px; font-style: italic;}',
+    '.increment input {width: 4em; text-align: center;}',
+    '.increment button {position: relative; margin: 0 1px; width: 2em; font-weight: bold; top: -3px;}'
   ],
   template:
 `<section class="increment">
@@ -20,13 +20,13 @@ export class IncrementorComponent {
   private _increment = 0;
   @Input() set increment(value: number) {
     this._increment = value;
-    this.onChange.emit(this._increment);
-  };
+    this.change.emit(this._increment);
+  }
   get increment(): number {
     return this._increment;
   }
 
-  @Output() public onChange = new EventEmitter<number>();
+  @Output() public change = new EventEmitter<number>();
 
   changeIncrement(change: number) {
     this.increment += change;
