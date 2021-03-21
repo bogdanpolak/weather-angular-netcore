@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { WeatherForecast } from './weather-forecast';
 import { WeatherService } from './weather.service';
 
@@ -13,14 +13,13 @@ export class FetchDataComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const url = '/v1/weather/forecast';
     this.weatherService.getForecast().subscribe(
-      result => this.onForecatFeatched(result),
+      result => this.onForecastFetched(result),
       error => console.error(error)
     );
   }
 
-  private onForecatFeatched(weatherForecast: WeatherForecast[]) {
+  private onForecastFetched(weatherForecast: WeatherForecast[]) {
     setTimeout(() => {
       this.forecasts = weatherForecast;
     }, 1000);
