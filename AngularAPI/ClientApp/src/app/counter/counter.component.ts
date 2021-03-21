@@ -7,18 +7,18 @@ import { Component } from '@angular/core';
 <p aria-live="polite">Current count: <strong>{{ currentCount }}</strong></p>
 <div class="d-flex flex-wrap">
   <button class="btn btn-primary" (click)="incrementCounter()">Increment</button>
-  <app-incrementor [increment]="increment" (change)="onIncrementChanged($event)"></app-incrementor>
+  <app-incrementor [increment]="currentIncrement" (change)="onIncrementChanged($event)"></app-incrementor>
 </div>`
 })
 export class CounterComponent {
   public currentCount = 0;
-  public increment = 1;
+  public currentIncrement = 1;
 
   public incrementCounter() {
-    this.currentCount += +this.increment;
+    this.currentCount += +this.currentIncrement;
   }
 
   onIncrementChanged(value: number) {
-    this.increment = value;
+    this.currentIncrement = value;
   }
 }
